@@ -1,0 +1,27 @@
+
+/* Left-bottom circular cutout */
+.card::before {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: -25px;
+  width: 80px;
+  height: 70px;
+  background-color: #1b1b1b;
+  border-radius: 30%;
+  box-shadow: 0 -7px 0 25px #1b1b1b;
+  z-index: 1;
+}
+
+/*.card::after {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  bottom: -25px;*/
+/*  left: -25px;*/
+/*  width: 80px;*/
+/*  height: 70px;*/
+/*  background-color: #1b1b1b;*/
+/*  border-radius: 30%;*/
+/*  box-shadow: 0 -7px 0 25px #1b1b1b;*/
+/*}*/
+

@@ -1,0 +1,294 @@
+
+
+<div class="bookCarBg">
+
+    <div class="text-center mb-6">
+      <h6 class="text-sm text-yellow-500 uppercase tracking-widest mb-2">Rent Now</h6>
+      <h1 class="text-4xl font-extrabold">
+        Book Rental Services<span class="text-yellow-500"></span>
+      </h1>
+    </div>
+
+  <div class="p-4" style="background-color: #1b1b1b; border-radius: 50px">
+    <!-- Car Type -->
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="serviceTypes"
+          optionLabel="name"
+          [(ngModel)]="selectedServiceType"
+          (onChange)="onServiceTypeChange($event)"
+          placeholder="Choose Service Type"
+          class="dropdown"
+          id="CarType1"
+          name="CarType1" />
+        <label for="CarType1">Choose Service Type</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+  </div>
+
+  <!-- Booking Bar: OutStation Round Trip -->
+  <div class="booking-bar" *ngIf="selectedServiceType?.name === 'OutStation Round Trip'">
+    <!-- Car Type -->
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="filteredCarCategories"
+          optionLabel="name"
+          [(ngModel)]="selectedCategory"
+          placeholder="Choose Car Type"
+          class="dropdown"
+          id="CarType"
+          name="CarType" />
+        <label for="CarType">Choose Car Type</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="startLocation"
+          optionLabel="name"
+          [(ngModel)]="selectedStartLocation"
+          placeholder="Pick Up Location"
+          class="dropdown"
+          id="Pick Up Location"
+          name="Pick Up Location" />
+        <label for="Pick Up Location">Pick Up Location</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+    <!-- Pick Up Date -->
+    <div class="form-item">
+      <p-floatLabel>
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          [dateFormat]="'yy-mm-dd'"
+          [(ngModel)]="startDate"
+          class="custom-datepicker"
+          id="icondisplay">
+          <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+            <i
+              class="pi pi-calendar pe-2 pointer-events-none"
+              style="color:#f5b754; font-weight: 200 !important;"
+              (click)="clickCallBack($event)"></i>
+          </ng-template>
+        </p-calendar>
+        <label for="icondisplay">Pick Up Date</label>
+      </p-floatLabel>
+      <!--        </div>-->
+    </div>
+
+
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="endLocation"
+          optionLabel="name"
+          [(ngModel)]="selectedEndLocation"
+          placeholder="Drop Off Location"
+          class="dropdown"
+          id="Drop Off Location"
+          name="Drop Off Location" />
+        <label for="Drop Off Location">Drop Off Location</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+    <!-- Return Date -->
+    <div class="form-item">
+      <p-floatLabel>
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          [dateFormat]="'yy-mm-dd'"
+          [(ngModel)]="endDate"
+          class="custom-datepicker"
+          id="icondisplay2">
+          <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+            <i
+              class="pi pi-calendar pe-2 pointer-events-none"
+              style="color:#f5b754; font-weight: 200 !important;"
+              (click)="clickCallBack($event)"></i>
+          </ng-template>
+        </p-calendar>
+        <label for="icondisplay2">Return Up Date</label>
+      </p-floatLabel>
+    </div>
+
+    <!-- Rent Now Button -->
+    <div class="form-item">
+      <button (click)="searchCars()" class="rent-now-btn">Rent Now</button>
+    </div>
+  </div>
+
+
+  <!-- Booking Bar: Hourly -->
+  <div class="booking-bar" *ngIf="selectedServiceType?.name === 'Hourly'">
+    <!-- Car Type -->
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="filteredCarCategories"
+          optionLabel="name"
+          [(ngModel)]="selectedCategory"
+          placeholder="Choose Car Type"
+          class="dropdown"
+          id="CarType"
+          name="CarType" />
+        <label for="CarType">Choose Car Type</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+    <!-- Pick Up Date -->
+    <div class="form-item">
+      <p-floatLabel>
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          [(ngModel)]="startDate"
+          [dateFormat]="'yy-mm-dd'"
+          class="custom-datepicker"
+          id="icondisplay1">
+          <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+            <i
+              class="pi pi-calendar pe-2 pointer-events-none"
+              style="color:#f5b754; font-weight: 200 !important;"
+              (click)="clickCallBack($event)"></i>
+          </ng-template>
+        </p-calendar>
+        <label for="icondisplay1">Pick Up Date</label>
+      </p-floatLabel>
+      <!--        </div>-->
+    </div>
+
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="startLocation"
+          optionLabel="name"
+          [(ngModel)]="selectedStartLocation"
+          placeholder="Pick Up Location"
+          class="dropdown"
+          id="Pick Up Location"
+          name="startDate" />
+        <label for="Pick Up Location">Pick Up Location</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+
+    <!-- Hours -->
+    <div class="form-item">
+      <p-floatLabel>
+        <input pInputText type="number" id="hours" [(ngModel)]="hoursValue" />
+        <label for="hours">Hours</label>
+      </p-floatLabel>
+    </div>
+
+
+    <!-- Rent Now Button -->
+    <div class="form-item">
+      <button (click)="searchCars()" class="rent-now-btn">Rent Now</button>
+    </div>
+  </div>
+
+
+  <!-- Booking Bar: Daily -->
+  <div class="booking-bar" *ngIf="selectedServiceType?.name === 'Daily'">
+    <!-- Car Type -->
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="filteredCarCategories"
+          optionLabel="name"
+          [(ngModel)]="selectedCategory"
+          placeholder="Choose Car Type"
+          class="dropdown"
+          id="CarType"
+          name="CarType" />
+        <label for="CarType">Choose Car Type</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+    <div class="form-item">
+      <!-- <div class="dropdown"> -->
+      <p-floatLabel>
+        <p-dropdown
+          [options]="startLocation"
+          optionLabel="name"
+          [(ngModel)]="selectedStartLocation"
+          placeholder="Pick Up Location"
+          class="dropdown"
+          id="Pick Up Location"
+          name="Pick Up Location" />
+        <label for="Pick Up Location">Pick Up Location</label>
+      </p-floatLabel>
+      <!-- </div> -->
+    </div>
+
+    <!-- Pick Up Date -->
+    <div class="form-item">
+      <p-floatLabel>
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          [dateFormat]="'yy-mm-dd'"
+          [(ngModel)]="startDate"
+          class="custom-datepicker"
+          id="icondisplay">
+          <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+            <i
+              class="pi pi-calendar pe-2 pointer-events-none"
+              style="color:#f5b754; font-weight: 200 !important;"
+              (click)="clickCallBack($event)"></i>
+          </ng-template>
+        </p-calendar>
+        <label for="icondisplay">Pick Up Date</label>
+      </p-floatLabel>
+      <!--        </div>-->
+    </div>
+
+
+    <!-- Return Date -->
+    <div class="form-item">
+      <p-floatLabel>
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          [dateFormat]="'yy-mm-dd'"
+          [(ngModel)]="endDate"
+          class="custom-datepicker"
+          id="icondisplay2">
+          <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+            <i
+              class="pi pi-calendar pe-2 pointer-events-none"
+              style="color:#f5b754; font-weight: 200 !important;"
+              (click)="clickCallBack($event)"></i>
+          </ng-template>
+        </p-calendar>
+        <label for="icondisplay2">Return Up Date</label>
+      </p-floatLabel>
+    </div>
+
+    <!-- Rent Now Button -->
+    <div class="form-item">
+      <button (click)="searchCars()" class="rent-now-btn">Rent Now</button>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,116 @@
+<div class="p-4 bg-gray-900 text-white rounded-lg">
+  <h2 class="text-2xl mb-4 text-yellow-500">Available Cars</h2>
+
+  <div *ngIf="availableCars.length > 0; else noCars">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div *ngFor="let car of availableCars" class="p-4 bg-gray-800 rounded-lg shadow">
+        <img
+          *ngIf="car.carImage"
+          [src]="'data:image/jpeg;base64,' + car.carImage"
+          alt="{{ car.brand }} {{ car.model }}"
+          class="w-full h-32 object-cover rounded"
+        />
+        <h3 class="text-lg font-bold mt-2">{{ car.brand }} {{ car.model }}</h3>
+        <p>Category: {{ car.categoryName }}</p>
+        <p>Rental Type: {{ car.rentalTypeName }}</p>
+        <p class="text-yellow-400">Service Rate: ${{ car.serviceRate }}</p>
+        <div class="card bg-none flex justify-content-end">
+          <p-button pRipple (onClick)="onBookCar(car)" class="p-button-success" label="Book Now" />
+          <!-- <button type="button" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Book Now</button> -->
+      </div>      
+      </div>
+    </div>
+  </div>
+
+  <!-- No Cars Template -->
+  <ng-template #noCars>
+    <p class="text-center text-gray-400">No cars found for the selected criteria.</p>
+  </ng-template>
+</div>
+
+
+
+<div class="card flex justify-content-center">
+  
+  <p-dialog 
+      header="Book Car" 
+      [(visible)]="visible" 
+      [modal]="true" 
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+      [style]="{ width: '50vw' }" 
+      [draggable]="false" 
+      [resizable]="false">
+          
+      <div class="booking-container">
+        <h2>Car Booking</h2>
+      
+        <form (ngSubmit)="onSubmit()">
+          <div>
+            <label for="carId">Car ID:</label>
+            <input readonly id="carId" name="carId" [(ngModel)]="carBookingRequest.carId" required />
+          </div>
+      
+          <div>
+            <label for="rentalType">Rental Type:</label>
+            <input readonly id="rentalType" [(ngModel)]="carBookingRequest.rentalType" name="rentalType" required/>
+          </div>
+      
+          <div>
+            <label for="startDate">Start Date:</label>
+            <input readonly id="startDate" [(ngModel)]="carBookingRequest.startDate" name="startDate" required />
+          </div>
+      
+          <div>
+            <label for="endDate">End Date:</label>
+            <input readonly id="endDate" [(ngModel)]="carBookingRequest.endDate" name="endDate" required />
+          </div>
+      
+          <div>
+            <label for="pickupLocation">Pickup Location:</label>
+            <input readonly id="pickupLocation" [(ngModel)]="carBookingRequest.pickupLocation" name="pickupLocation" required />
+          </div>
+      
+          <div>
+            <label for="dropOffLocation">Drop-off Location:</label>
+            <input readonly id="dropOffLocation" [(ngModel)]="carBookingRequest.dropOffLocation" name="dropOffLocation" required />
+          </div>
+      
+          <!-- Conditional input readonly for 'Hourly' rental type -->
+          <div *ngIf="carBookingRequest.rentalType === 'Hourly'">
+            <label for="hours">Hours:</label>
+            <input readonly id="hours" [(ngModel)]="carBookingRequest.hours" name="hours" required />
+          </div>
+      
+          <!-- Conditional input readonly for 'Outstation Round Trip' rental type -->
+          <div *ngIf="carBookingRequest.rentalType === 'Outstation Round Trip'">
+            <label for="distance">Distance (km):</label>
+            <input readonly id="distance" [(ngModel)]="carBookingRequest.distance" name="distance" required />
+          </div>
+      
+          <!-- <div>
+            <label for="additionalServices">Additional Services:</label>
+            <select id="additionalServices" [(ngModel)]="carBookingRequest.additionalServiceIds" name="additionalServiceIds" multiple>
+              <option *ngFor="let service of availableServices" [value]="service.id">{{ service.name }}</option>
+            </select>
+          </div> -->
+
+          <div>
+            <p-multiSelect 
+              [options]="availableServices" 
+              optionLabel="name"
+              [(ngModel)]="selectedAdditionalServiceIds"
+              name="additionalServiceIds"
+              placeholder="Select Additional Services"
+              [optionValue]="'id'" />  <!-- This will bind only the 'id' of each selected option -->
+          </div>
+          
+          <!-- <div>
+            <label for="paymentMethod">Payment Method:</label>
+            <input id="paymentMethod" [(ngModel)]="carBookingRequest.paymentMethod" name="paymentMethod" required/>
+          </div> -->
+      
+          <button type="submit">Book Car</button>
+        </form>
+      </div>
+  </p-dialog>
+</div>

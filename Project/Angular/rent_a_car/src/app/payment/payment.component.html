@@ -1,0 +1,73 @@
+<!--<div *ngIf="booking">-->
+<!--  <h2>Payment for Booking ID: {{ booking.id }}</h2>-->
+<!--  <p>Total Cost: {{ booking.cost }}</p>-->
+<!--  <button (click)="proceedToPayment()">Proceed to Payment</button>-->
+<!--</div>-->
+
+<div class="payment-form">
+  <h2>Make Payment to the number : 010123456789(Bkash, Nagad)</h2>
+  <form (ngSubmit)="submitPayment()">
+    <label for="amount">Total Amount:</label>
+    <input readonly [(ngModel)]="paymentData.amount" name="amount" required id="amount" />
+
+    <label for="initialAmount">Initial Payment Amount:</label>
+    <input readonly [(ngModel)]="paymentData.initialAmount" name="initialAmount" required id="initialAmount" />
+
+    <label for="paymentMethod">Payment Method:</label>
+    <select [(ngModel)]="paymentData.paymentMethod" name="paymentMethod" required id="paymentMethod">
+      <option value="Bkash">Bkash</option>
+      <option value="Nagad">Nagad</option>
+    </select>
+
+    <label for="transactionId">Transaction ID:</label>
+    <input type="text" [(ngModel)]="paymentData.transactionId" name="transactionId" required id="transactionId" />
+
+    <button type="submit">Pay Now</button>
+  </form>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-button (onClick)="showDialog()" label="Show" />
+  <p-dialog
+    header="Header"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [maximizable]="true">
+<!--    @if (bookingDetails){-->
+<!--      <h2>Booking Details</h2>-->
+<!--      <p><strong>Booking ID:</strong> {{ bookingDetails.id }}</p>-->
+<!--      <p><strong>Car Model:</strong> {{bookingDetails.brand}} {{ bookingDetails.model }}</p>-->
+<!--      <p><strong>Car Reg. Number:</strong>{{ bookingDetails.registrationNumber }}</p>-->
+<!--      <p><strong>Rental Type:</strong>{{ bookingDetails.rentalType }}</p>-->
+<!--      <p><strong>Pickup Location:</strong>{{ bookingDetails.pickupLocation }}</p>-->
+<!--      <p><strong>Start Date:</strong>{{ bookingDetails.startDate | date }}</p>-->
+<!--      <p><strong>End Date:</strong>{{ bookingDetails.endDate | date }}</p>-->
+<!--      <p><strong>Driver:</strong> {{ bookingDetails.driverFirstName }} {{ bookingDetails.driverLastName }}</p>-->
+<!--      <p><strong>Total Cost:</strong> {{ bookingDetails.totalCost | currency }}</p>-->
+<!--      <p><strong>Initial Payment:</strong> {{ bookingDetails.initialAmount | currency }}</p>-->
+<!--      <p><strong>Payment Method:</strong> {{ bookingDetails.paymentMethod }}</p>-->
+<!--      <p><strong>Transaction ID:</strong> {{ bookingDetails.transactionId }}</p>-->
+
+<!--      <button (click)="generateInvoice()">Generate Invoice</button>-->
+<!--    }-->
+    <div *ngIf="bookingDetails">
+      <h2>Booking Details</h2>
+      <p><strong>Booking ID:</strong> {{ bookingDetails.id }}</p>
+      <p><strong>Car Model:</strong> {{ bookingDetails.brand }} {{ bookingDetails.model }}</p>
+      <p><strong>Car Reg. Number:</strong>{{ bookingDetails.registrationNumber }}</p>
+      <p><strong>Rental Type:</strong>{{ bookingDetails.rentalType }}</p>
+      <p><strong>Pickup Location:</strong>{{ bookingDetails.pickupLocation }}</p>
+      <p><strong>Start Date:</strong>{{ bookingDetails.startDate | date }}</p>
+      <p><strong>End Date:</strong>{{ bookingDetails.endDate | date }}</p>
+      <p><strong>Driver:</strong> {{ bookingDetails.driverFirstName }} {{ bookingDetails.driverLastName }}</p>
+      <p><strong>Total Cost:</strong> {{ bookingDetails.totalCost | currency }}</p>
+      <p><strong>Initial Payment:</strong> {{ bookingDetails.initialAmount | currency }}</p>
+      <p><strong>Payment Method:</strong> {{ bookingDetails.paymentMethod }}</p>
+      <p><strong>Transaction ID:</strong> {{ bookingDetails.transactionId }}</p>
+
+      <button (click)="generateInvoice()">Generate Invoice</button>
+    </div>
+  </p-dialog>
+</div>

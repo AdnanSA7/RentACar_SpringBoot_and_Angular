@@ -1,0 +1,20 @@
+.action-buttons {
+    display: flex;
+    gap: 3px; /* Minimized space between buttons */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .small-button ::ng-deep .p-button {
+    font-size: 0.6rem; /* Smaller text */
+    padding: 2px 4px; /* Reduced padding */
+    width: 32px; /* Smaller width */
+    height: 32px; /* Smaller height */
+    min-width: 20px; /* Smaller width */
+    line-height: 1; /* Adjust line height for smaller size */
+  }
+  
+  .small-button ::ng-deep .p-button-icon {
+    font-size: 0.8rem; /* Adjust icon size */
+  }
+  

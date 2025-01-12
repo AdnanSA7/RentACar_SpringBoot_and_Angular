@@ -1,0 +1,21 @@
+/* Default Navbar Styles */
+nav {
+  background: transparent;
+  box-shadow: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Scrolled Navbar */
+nav.scrolled {
+  /*background-color: #1b1b1b; !* Dark background *!*/
+  background-color: #1e1e1e; /* Dark background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+nav.scrolled a {
+  color: #f3f4f6; /* Lighter text color for scrolled navbar */
+}
+
+nav.scrolled a:hover {
+  color: #fbbf24; /* Yellow hover color */
+}

@@ -1,0 +1,55 @@
+<!-- Car Bookings Table -->
+<div class="p-6 bg-white rounded-lg shadow">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-lg font-bold">Car Bookings</h2>
+    <div class="flex space-x-4">
+      <input
+        type="text"
+        placeholder="Search client name, car, etc."
+        class="p-inputtext w-72 p-2 border border-gray-300 rounded"
+      />
+      <p-dropdown [options]="carTypeOptions" [(ngModel)]="selectedCarType" placeholder="Car Type"></p-dropdown>
+      <p-dropdown [options]="statusOptions" [(ngModel)]="selectedStatus" placeholder="Status"></p-dropdown>
+    </div>
+  </div>
+  <p-table [value]="carBookings" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Client Name</th>
+        <th>Car Model</th>
+        <th>Service</th>
+        <th>Start Date</th>
+        <th>Driver</th>
+        <th>Additional Services</th>
+        <th>Cost</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-booking>
+      <tr>
+        <td>{{ booking.id }}</td>
+        <td>{{ booking.userFirstName }}{{ booking.userLastName }}</td>
+        <td>{{ booking.carId }}</td>
+        <td>{{ booking.rentalType }} {{ booking.hours }} hours</td>
+        <td>{{ booking.startDate | date }}</td>
+        <td>{{ booking.driverFirstName }}{{ booking.driverLastName }}</td>
+        <td *ngIf="booking.additionalServiceName.length > 0; else noService">
+          {{ booking.additionalServiceName.join(', ') }}
+        </td>
+        <ng-template #noService>
+          <td>None</td>
+        </ng-template>
+        <td>{{ booking.cost }}</td>
+        <td>{{ booking.status }}</td>
+        <td>
+          <div class="action-buttons">
+            <p-button class="small-button" icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+

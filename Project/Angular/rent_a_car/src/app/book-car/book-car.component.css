@@ -1,0 +1,460 @@
+
+
+.bookCarBg {
+  position: relative;
+  background : url("../../../public/assets/slider/2.jpg");
+  background-size : cover;
+  background-repeat: no-repeat;
+  height: 90vh;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  /*padding: 20px;*/
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Add a black filter using ::before */
+.bookCarBg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity (0.5 for 50% black filter) */
+  z-index: -1; /* Keep the overlay behind the content */
+}
+
+
+
+
+
+.booking-button {
+ display: block;
+ padding: 0;
+ border: none;
+ margin: 0;
+ width: 100%;
+ background: #f5b754;
+ color: #1b1b1b;
+ font-family: 'Outfit', sans-serif;
+ font-size: 14px;
+ text-decoration: none;
+ line-height: 60px;
+ position: relative;
+ cursor: pointer;
+ transition: all 0.3s ease-out;
+ font-weight: 300;
+ border-radius: 30px;
+}
+.booking-button:hover {
+ background: #fff;
+ color: #1b1b1b;
+}
+.booking-button:focus {
+ outline: none;
+}
+
+
+
+/*Start here*/
+
+/* Booking Bar */
+.booking-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #181818;
+  padding: 20px 30px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+/* Form Items */
+.form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 10px;
+  flex: 1;
+  text-align: left;
+}
+
+.form-item label {
+  color: #ccc;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.form-item input,
+.form-item select {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+.form-item input::placeholder {
+  color: #aaa;
+}
+
+.form-item input:focus,
+.form-item select:focus {
+  outline: none;
+  border: 1px solid #ffa500;
+}
+
+/* Dropdown */
+:host ::ng-deep .dropdown .p-dropdown {
+  appearance: none !important;
+  width: 180px;
+  background-size: 10px !important;
+  /* padding-right: 10px !important; */
+  background-color: #222 !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+  border: none !important;
+}
+
+:host ::ng-deep .dropdown .p-dropdown .p-dropdown-label.p-inputtext {
+  color: #ccc;
+  margin-left: 8px;
+}
+
+/* Change the focus border color */
+::ng-deep .p-dropdown.p-focus {
+  border-color: #ffa500 !important; /* Replace with your desired color */
+  box-shadow: 0 0 5px rgba(255, 165, 0, 0.5) !important; /* Optional glow effect */
+}
+
+/* Optional: Adjust border color for hover (not focused) */
+::ng-deep .p-dropdown:hover {
+  border-color: #ffa500 !important; /* Replace with your hover color */
+}
+
+/* Change the dropdown arrow color */
+::ng-deep .p-dropdown .p-dropdown-trigger-icon {
+  color: #f5b754 !important; /* Replace with your desired color */
+}
+
+/* Optional: Change arrow color on hover */
+::ng-deep .p-dropdown:hover .p-dropdown-trigger-icon {
+  color: #ffa500 !important; /* Replace with your hover color */
+}
+
+
+:host ::ng-deep .dropdown .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  border: 0 none;
+  color: #ccc;
+  background: #222 !important;
+  transition: box-shadow 0.2s;
+  border-radius: 0;
+}
+
+:host ::ng-deep .dropdown .p-dropdown-panel .p-dropdown-items   .p-dropdown-item:hover{
+  background: #f5b754 !important;
+  color: #222;
+}
+
+/* :host ::ng-deep .datepick .p-dropdown {
+  appearance: none !important;
+  width: 200px;
+  background-size: 10px !important;
+  background-color: #222 !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+  border: none !important;
+} */
+
+/* [multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea {
+  --tw-shadow: 0 0 #0000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #222 !important;
+  color: #fff;
+  border-color: #6b7280;
+  border-radius: 0;
+  border-width: 1px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: .5rem .75rem;
+} */
+
+/* Rent Now Button */
+.rent-now-btn {
+  /* background-color: #ffa500; */
+  background: #f5b754;
+  color: #1b1b1b;
+  /* color: #fff; */
+  border: none;
+  width: 100%;
+  padding: 12px 10px;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: 400 !important;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rent-now-btn:hover {
+  background-color: #e69500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .booking-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .form-item {
+    margin: 10px 0;
+  }
+
+  .rent-now-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+
+/* Input Field Customization */
+::ng-deep .custom-datepicker input {
+  background-color: #222 !important;
+  color: #ccc !important;
+  width: 180px !important;
+  /*border: 1px solid #ffa500 !important;*/
+  border: none !important;
+  padding: 10px 12px !important;
+  border-radius: 25px !important;
+  font-size: 14px !important;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+::ng-deep .custom-datepicker input:focus {
+  border-color: #e69500 !important;
+  box-shadow: 0 0 5px rgba(255, 165, 0, 0.5) !important;
+  outline: none !important;
+}
+
+/* Calendar Icon Customization */
+::ng-deep .custom-datepicker .p-datepicker-trigger {
+  color: #f5b754 !important;
+}
+
+::ng-deep .custom-datepicker .p-datepicker-trigger.p-focus {
+  border-color: #e69500 !important;
+  box-shadow: 0 0 5px rgba(255, 165, 0, 0.5) !important;
+  outline: none !important;
+}
+
+
+/* Align the calendar icon with the input field */
+::ng-deep .p-calendar .p-datepicker-trigger {
+  position: absolute;
+  right: 10px; /* Adjust spacing from the right */
+  top: 50%; /* Align vertically */
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 7px;
+}
+
+/* Style the input field container to accommodate the icon */
+::ng-deep .p-calendar input {
+  padding-right: 40px; /* Add padding to make space for the icon */
+  height: 48px; /* Ensure the input field height matches design */
+  line-height: 48px;
+}
+
+/* Optional: Adjust icon size */
+::ng-deep .p-calendar .p-datepicker-trigger .pi-calendar {
+  font-size: 16px; /* Adjust icon size */
+  color: inherit; /* Match input field text color */
+}
+
+/* Optional: Hover effect */
+::ng-deep .p-calendar .p-datepicker-trigger:hover .pi-calendar {
+  color: #ffa500; /* Change icon color on hover */
+}
+
+
+
+::ng-deep .custom-datepicker .p-datepicker-trigger:hover {
+  color: #e69500 !important;
+}
+
+/* Calendar Popup Customization */
+::ng-deep .p-datepicker {
+  width: 300px !important; /* Adjust the width */
+  /*height: 80px !important;*/
+  font-size: 6px !important; /* Adjust the font size */
+  top: 50% !important; /* Align the popup directly below the input */
+  background-color: #222 !important;
+  border: 1px solid #333 !important;
+  color: #ccc !important;
+}
+
+::ng-deep .p-datepicker-header {
+  height: 30px !important; /* Reduce header height */
+  font-size: 6px !important; /* Smaller font for month/year */
+  /*padding: 5px !important;*/
+  background-color: #181818 !important;
+  /*border-bottom: 1px solid #333 !important;*/
+}
+
+::ng-deep .p-datepicker-header .p-datepicker-prev,
+::ng-deep .p-datepicker-header .p-datepicker-next {
+  color: #ffa500 !important;
+  font-size: 6px !important; /* Reduce button size */
+  /*width: 20px !important;*/
+  /*height: 20px !important;*/
+}
+
+::ng-deep .p-datepicker-header .p-datepicker-title {
+  color: #ccc !important;
+}
+
+/* Calendar Days Customization */
+::ng-deep .p-datepicker-calendar td {
+  width: 5px !important; /* Adjust width of cells */
+  height: 5px !important; /* Adjust height of cells */
+  color: #fff !important;
+  background-color: #222 !important;
+}
+
+::ng-deep .p-datepicker table td {
+  padding: 0 !important;
+}
+
+::ng-deep .p-datepicker-calendar td span {
+  font-size: 12px !important; /* Smaller font for days */
+  line-height: 25px !important;
+}
+
+::ng-deep .p-datepicker-calendar td:hover {
+  /*background-color: #444 !important;*/
+  color: #222 !important;
+}
+
+/* Adjust footer size (today and clear buttons) */
+::ng-deep .p-datepicker-footer {
+  font-size: 12px !important; /* Smaller button font */
+  padding: 5px !important;
+}
+
+/* Adjust the size of the month dropdown if enabled */
+::ng-deep .p-datepicker-month {
+  font-size: 12px !important;
+  padding: 2px 5px !important;
+}
+
+/* Adjust the size of the year dropdown if enabled */
+::ng-deep .p-datepicker-year {
+  font-size: 12px !important;
+  padding: 2px 5px !important;
+}
+
+::ng-deep .p-datepicker-calendar .p-highlight {
+  background-color: #ffa500 !important;
+  color: #181818 !important;
+}
+
+/* Today and Selected Date */
+::ng-deep .p-datepicker-today .p-highlight {
+  background-color: #e69500 !important;
+  color: #fff !important;
+}
+
+/*::ng-deep .p-datepicker-footer {*/
+/*  background-color: #181818 !important;*/
+/*  border-top: 1px solid #333 !important;*/
+/*}*/
+
+/*!*Theme Changer Toggle*!*/
+
+
+/*!* Container styling *!*/
+/*.theme-toggle-container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  height: 100vh;*/
+/*  background-color: var(--background-color);*/
+/*  transition: background-color 0.3s;*/
+/*}*/
+
+/*!* Light and dark theme colors *!*/
+/*body.light {*/
+/*  --background-color: #ffffff;*/
+/*  --text-color: #000000;*/
+/*}*/
+
+/*body.dark {*/
+/*  --background-color: #121212;*/
+/*  --text-color: #ffffff;*/
+/*}*/
+
+/*!* Toggle switch styling *!*/
+/*.toggle-switch {*/
+/*  position: relative;*/
+/*  display: inline-block;*/
+/*  width: 50px;*/
+/*  height: 25px;*/
+/*}*/
+
+/*.toggle-switch input {*/
+/*  opacity: 0;*/
+/*  width: 0;*/
+/*  height: 0;*/
+/*}*/
+
+/*.slider {*/
+/*  position: absolute;*/
+/*  cursor: pointer;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  bottom: 0;*/
+/*  background-color: #121212;*/
+/*  border-radius: 25px;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: flex-start;*/
+/*  transition: 0.3s;*/
+/*  padding: 2px;*/
+/*}*/
+
+/*input:checked + .slider {*/
+/*  justify-content: flex-end;*/
+/*  background-color: #ffffff;*/
+/*}*/
+
+/*.sun-icon,*/
+/*.moon-icon {*/
+/*  color: #ffa500;*/
+/*  font-size: 16px;*/
+/*}*/
+
+/*.moon-icon {*/
+/*  color: #ffffff;*/
+/*}*/
+

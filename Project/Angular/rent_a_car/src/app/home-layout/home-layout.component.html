@@ -1,0 +1,140 @@
+<!-- Navbar -->
+<div class="absolute -top-0 z-50 w-full">
+  <app-navbar></app-navbar>
+</div>
+
+<!-- Carousel -->
+<p-carousel
+  [value]="images"
+  [numVisible]="1"
+  [numScroll]="3"
+  [circular]="true"
+  [showIndicators]="false"
+  [showNavigators]="false"
+  autoplayInterval="3000">
+  <ng-template let-product pTemplate="item">
+<!--    <div class="relative mx-auto">-->
+      <div class="relative" style="height:100vh">
+        <img
+          [src]="product.image"
+          alt="..."
+          class="border-round" style="object-fit:cover; height:100vh; width:100vw" />
+        <div class="h-full w-full opacity-50 bg-black absolute top-0">
+          <!-- <p>hey developer</p> -->
+        </div>
+        <div class="absolute z-30 text-white top-72 left-24">
+          <h1 class="text-7xl font-bold">Rental Car</h1>
+          <div class="text-center mt-3">
+            <button (click)="goto()" class="pt-4 ps-10 pb-4 pe-10 text-white bg-transparent border hover:bg-yellow-400 hover:text-black hover:border-none font-medium rounded-full text-sm ">Rent Now</button>
+          </div>
+        </div>
+      </div>
+<!--    </div>-->
+  </ng-template>
+</p-carousel>
+
+<!-- Other Components -->
+<app-rentaltypes></app-rentaltypes>
+
+<app-book-car></app-book-car>
+
+
+
+
+
+
+  <!--    <p-carousel-->
+<!--      [numVisible]="1"-->
+<!--      [numScroll]="3"-->
+<!--      [circular]="true"-->
+<!--      [responsiveOptions]="responsiveOptions"-->
+<!--      autoplayInterval="3000" class="relative w-full">-->
+<!--      <div-->
+<!--        class="relative overflow-hidden  md:h-96"-->
+<!--        style="height: 100vh"-->
+<!--      >-->
+<!--        &lt;!&ndash; Item 1 &ndash;&gt;-->
+<!--        <div class="hidden duration-700 ease-in-out " data-carousel-item>-->
+<!--          <div class="relative">-->
+<!--            <img-->
+<!--              src="assets/slider/11.jpg"-->
+<!--              class="block w-full top-1/2 left-1/2  -z-10 "-->
+<!--              alt="..."-->
+<!--            />-->
+<!--            <div class="h-full w-full opacity-50 bg-black absolute top-0">-->
+<!--              &lt;!&ndash; <p>hey developer</p> &ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="absolute z-30 text-white top-72 left-24">-->
+<!--              <h1 class="text-7xl font-bold">Rental Car</h1>-->
+<!--              <div class="text-center mt-3">-->
+<!--                <button (click)="goto()" class="pt-4 ps-10 pb-4 pe-10 text-white bg-transparent border hover:bg-yellow-400 hover:text-black hover:border-none font-medium rounded-full text-sm ">Rent Now</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Item 2 &ndash;&gt;-->
+<!--        <div class="hidden duration-700 ease-in-out" data-carousel-item>-->
+<!--          <div class="relative">-->
+<!--            <img-->
+<!--              src="assets/slider/9.jpg"-->
+<!--              class="block w-full top-1/2 left-1/2  -z-10 "-->
+<!--              alt="..."-->
+<!--            />-->
+<!--            <div class="h-full w-full opacity-50 bg-black absolute top-0">-->
+<!--              &lt;!&ndash; <p>hey developer</p> &ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="absolute z-30 text-white top-72 left-24">-->
+<!--              <h1 class="text-7xl font-bold">Rental Car</h1>-->
+<!--              <div class="text-center mt-3">-->
+<!--                <button (click)="goto()" class="pt-4 ps-10 pb-4 pe-10 text-white bg-transparent border hover:bg-yellow-400 hover:text-black hover:border-none font-medium rounded-full text-sm ">Rent Now</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Item 3 &ndash;&gt;-->
+<!--        <div class="hidden duration-700 ease-in-out" data-carousel-item>-->
+<!--          <div class="relative">-->
+<!--            <img-->
+<!--              src="assets/slider/14.jpg"-->
+<!--              class="block w-full top-1/2 left-1/2  -z-10 "-->
+<!--              alt="..."-->
+<!--            />-->
+<!--            <div class="h-full w-full opacity-50 bg-black absolute top-0">-->
+<!--              &lt;!&ndash; <p>hey developer</p> &ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="absolute z-30 text-white top-72 left-24">-->
+<!--              <h1 class="text-7xl font-bold">Rental Car</h1>-->
+<!--              <div class="text-center mt-3">-->
+<!--                <button (click)="goto()" class="pt-4 ps-10 pb-4 pe-10 text-white bg-transparent border hover:bg-yellow-400 hover:text-black hover:border-none font-medium rounded-full text-sm ">Rent Now</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Slider indicators &ndash;&gt;-->
+<!--        <div-->
+<!--          class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"-->
+<!--        >-->
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="w-4 h-4 btn rounded-full border bg-transparent border-white hover:bg-yellow-400"-->
+<!--            aria-current="true"-->
+<!--            aria-label="Slide 1"-->
+<!--            data-carousel-slide-to="0"-->
+<!--          ><span></span></button>-->
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="w-4 h-4 btn  rounded-full border border-white hover:bg-yellow-400"-->
+<!--            aria-current="false"-->
+<!--            aria-label="Slide 2"-->
+<!--            data-carousel-slide-to="1"-->
+<!--          ><span></span></button>-->
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="w-4 h-4 btn rounded-full border border-white hover:bg-yellow-400"-->
+<!--            aria-current="false"-->
+<!--            aria-label="Slide 3"-->
+<!--            data-carousel-slide-to="2"-->
+<!--          ><span></span></button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </p-carousel>-->

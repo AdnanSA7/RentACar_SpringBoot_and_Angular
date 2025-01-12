@@ -1,0 +1,357 @@
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-3xl font-semibold">Car Units</h1>
+    <p-button (click)="showDialog()" label="Add Car" icon="pi pi-plus" class="p-button-success"/>
+  </div>
+
+  <!-- Table of Cars -->
+  <p-table [value]="cars" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" class="mb-6">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Car Model</th>
+        <th>Seats</th>
+        <th>Registration Number</th>
+        <th>Category Name</th>
+        <th>RentalType Name</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+      <tr>
+        <td>{{ car.id }}</td>
+        <td>{{ car.brand }} {{ car.model }}</td>
+        <td>{{ car.seats }}</td>
+        <td>{{ car.registrationNumber }}</td>
+        <td>{{ car.categoryName }}</td>
+        <td>{{ car.rentalTypeName }}</td>
+
+        <!-- Image with Hover Zoom Effect -->
+        <td class="relative overflow-visible">
+          <div class="group inline-block w-20 h-12 rounded-lg overflow-hidden">
+            <img
+              [src]="'data:image/jpeg;base64,' + car.carImage"
+              alt="Car Image"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-150 group-hover:absolute group-hover:top-[-25%] group-hover:left-[-25%] group-hover:z-50"
+            />
+          </div>
+        </td>
+        <!-- <td>
+          <span [ngClass]="{'text-green-500': car.status === 'Available', 'text-red-500': car.status === 'Rented'}">
+            {{ car.status }}
+          </span>
+        </td> -->
+        <td>
+          <button pButton icon="pi pi-pencil" class="p-button-warning"></button>
+          <button pButton icon="pi pi-trash" class="p-button-danger"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+<div class="card flex justify-center">
+<!--  <p-button (click)="showDialog()" label="Show" />-->
+  <p-dialog
+    [(visible)]="visible"
+    [header]="'Add Car'"
+    [modal]="true"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [maximizable]="true">
+
+<!--    <form (ngSubmit)="submitCar()">-->
+<!--      <div>-->
+<!--        <label for="brand">Brand:</label>-->
+<!--        <input type="text" id="brand" [(ngModel)]="car.brand" name="brand" required />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="model">Model:</label>-->
+<!--        <input type="text" id="model" [(ngModel)]="car.model" name="model" required />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="year">Year:</label>-->
+<!--        <input type="number" id="year" [(ngModel)]="car.year" name="year" required />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="seats">Seats:</label>-->
+<!--        <input type="number" id="seats" [(ngModel)]="car.seats" name="seats" required />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="color">Color:</label>-->
+<!--        <input type="text" id="color" [(ngModel)]="car.color" name="color" required />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="registrationNumber">Registration Number:</label>-->
+<!--        <input-->
+<!--          type="text"-->
+<!--          id="registrationNumber"-->
+<!--          [(ngModel)]="car.registrationNumber"-->
+<!--          name="registrationNumber"-->
+<!--          required-->
+<!--        />-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="image">Car Image:</label>-->
+<!--        <input type="file" id="image" (change)="onFileSelected($event)" />-->
+<!--      </div>-->
+<!--      <button type="submit">Submit</button>-->
+<!--    </form>-->
+
+
+<div class="container mt-16">
+  <!-- <h1 class="text-center text-gray-700 text-2xl mb-4">Add Car</h1> -->
+  <form class="max-w-md mx-auto">
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="text"
+        [(ngModel)]="carData.brand"
+        name="brand"
+        id="floating_brand"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_brand"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Brand</label
+      >
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="text"
+        [(ngModel)]="carData.model"
+        name="model"
+        id="floating_model"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_model"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Model</label
+      >
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="text"
+        [(ngModel)]="carData.year"
+        name="year"
+        id="floating_year"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_year"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Year</label
+      >
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6 ml-0 mr-0">
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          type="text"
+          [(ngModel)]="carData.seats"
+          name="seats"
+          id="floating_seats"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="floating_seats"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Seats</label
+        >
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          type="text"
+          [(ngModel)]="carData.color"
+          name="color"
+          id="floating_color"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="floating_color"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Color</label
+        >
+      </div>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="text"
+        [(ngModel)]="carData.registrationNumber"
+        name="registrationNumber"
+        id="floating_registrationNumber"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_registrationNumber"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Registration Number</label
+      >
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="text"
+        [(ngModel)]="carData.carCategoryId"
+        name="carCategoryId"
+        id="floating_carCategoryId"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_carCategoryId"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Car CategoryId</label
+      >
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="file"
+        name="image"
+        id="floating_carImage"
+        (change)="onFileSelected($event)"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_carImage"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Car Image</label
+      >
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <!-- <p-multiSelect
+        [options]="rentalTypeIds"
+        [(ngModel)]="carData.rentalTypeIds"
+        optionLabel="name"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder="Select RentalTypeIds" /> -->
+        <input
+        type="text"
+        [(ngModel)]="carData.rentalTypeIds"
+        name="rentalTypeIds"
+        id="floating_rentalTypeIds"
+        (change)="updateRentalTypeIds($event)"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_rentalTypeIds"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Rental Type IDs (comma-separated)</label
+      >
+    </div>
+    <div class="text-end">
+      <button
+        (click)="closeDialog()"
+        type="button"
+        class="text-white mr-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="submitCar()"
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+
+    <!-- <div class="card flex flex-wrap justify-center items-end gap-4 mt-4">
+      <p-floatLabel>
+        <input pInputText type="text" id="brand" autocomplete="off" />
+        <label for="brand">Brand</label>
+      </p-floatLabel>
+      <p-floatLabel>
+        <input pInputText id="model" autocomplete="off" />
+        <label for="model">Model</label>
+      </p-floatLabel>
+    </div>
+    <div class="card flex flex-wrap justify-center items-end gap-4 mt-4">
+      <p-floatLabel>
+        <input pInputText id="Year"  autocomplete="off" />
+        <label for="Year">Year</label>
+      </p-floatLabel>
+      <p-floatLabel>
+        <input pInputText id="Seats" autocomplete="off" />
+        <label for="Seats">On Label</label>
+      </p-floatLabel>
+    </div>
+    <div class="card flex flex-wrap justify-center items-end gap-4 mt-4">
+      <p-floatLabel>
+        <input pInputText id="Color" autocomplete="off" />
+        <label for="Color">On Label</label>
+      </p-floatLabel>
+      <p-floatLabel>
+        <input pInputText id="Registration Number" autocomplete="off" />
+        <label for="Registration Number">On Label</label>
+      </p-floatLabel>
+    </div> -->
+
+
+<!--        <div class="container mx-auto">-->
+<!--&lt;!&ndash;      <h1 class="text-2xl font-bold mb-4">Create a New Car</h1>&ndash;&gt;-->
+<!--      <form (submit)="submitCar()">-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Brand</label>-->
+<!--          <input type="text" [(ngModel)]="carData.brand" name="brand" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Model</label>-->
+<!--          <input type="text" [(ngModel)]="carData.model" name="model" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Year</label>-->
+<!--          <input type="number" [(ngModel)]="carData.year" name="year" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Seats</label>-->
+<!--          <input type="number" [(ngModel)]="carData.seats" name="seats" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Color</label>-->
+<!--          <input type="text" [(ngModel)]="carData.color" name="color" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Registration Number</label>-->
+<!--          <input type="text" [(ngModel)]="carData.registrationNumber" name="registrationNumber" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Car Category ID</label>-->
+<!--          <input type="number" [(ngModel)]="carData.carCategoryId" name="carCategoryId" class="input" required />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Rental Type IDs (comma-separated)</label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            (change)="updateRentalTypeIds($event)"-->
+<!--            class="input"-->
+<!--            required-->
+<!--          />-->
+<!--        </div>-->
+<!--        <div class="mb-4">-->
+<!--          <label class="block">Car Image</label>-->
+<!--          <input type="file" (change)="onFileSelected($event)" class="input" />-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary">Create Car</button>-->
+<!--      </form>-->
+<!--    </div>-->
+  </p-dialog>
+</div>

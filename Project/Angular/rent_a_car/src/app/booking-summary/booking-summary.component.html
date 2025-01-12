@@ -1,0 +1,28 @@
+@if (bookingDetails) {
+  <div class="booking-summary">
+    <h2>Booking Summary</h2>
+    <p><strong>Car ID:</strong> {{ bookingDetails.carId }}</p>
+    <p><strong>Rental Type:</strong> {{ bookingDetails.rentalType }}</p>
+    <p><strong>Start Date:</strong> {{ bookingDetails.startDate | date }}</p>
+    <p><strong>Pickup Location:</strong> {{ bookingDetails.pickupLocation }}</p>
+    @if (bookingDetails.rentalType == 'Hourly') {
+      <p><strong>Hours:</strong> {{ bookingDetails.hours }}</p>
+    }
+    @else if (bookingDetails.rentalType == 'Daily') {
+      <p><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</p>
+      <p><strong>Days:</strong> {{ bookingDetails.days }}</p>
+    }
+    @else if (bookingDetails.rentalType == 'OutStation Round Trip') {
+      <p><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</p>
+      <p><strong>Dropoff Location:</strong> {{ bookingDetails.dropOffLocation }}</p>
+      <p><strong>Distance:</strong> {{ bookingDetails.distance }}</p>
+    }
+    <p><strong>Cost:</strong> ${{ bookingDetails.cost }}</p>
+    <p><strong>Additional Services:</strong></p>
+    <ul>
+      <li *ngFor="let service of bookingDetails.additionalServiceName">{{ service }}</li>
+    </ul>
+    <button (click)="proceedToPayment()">Proceed to Payment</button>
+  </div>
+}
+
