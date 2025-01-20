@@ -52,22 +52,23 @@
 
 <!--      <button (click)="generateInvoice()">Generate Invoice</button>-->
 <!--    }-->
-    <div *ngIf="bookingDetails">
-      <h2>Booking Details</h2>
-      <p><strong>Booking ID:</strong> {{ bookingDetails.id }}</p>
-      <p><strong>Car Model:</strong> {{ bookingDetails.brand }} {{ bookingDetails.model }}</p>
-      <p><strong>Car Reg. Number:</strong>{{ bookingDetails.registrationNumber }}</p>
-      <p><strong>Rental Type:</strong>{{ bookingDetails.rentalType }}</p>
-      <p><strong>Pickup Location:</strong>{{ bookingDetails.pickupLocation }}</p>
-      <p><strong>Start Date:</strong>{{ bookingDetails.startDate | date }}</p>
-      <p><strong>End Date:</strong>{{ bookingDetails.endDate | date }}</p>
-      <p><strong>Driver:</strong> {{ bookingDetails.driverFirstName }} {{ bookingDetails.driverLastName }}</p>
-      <p><strong>Total Cost:</strong> {{ bookingDetails.totalCost | currency }}</p>
-      <p><strong>Initial Payment:</strong> {{ bookingDetails.initialAmount | currency }}</p>
-      <p><strong>Payment Method:</strong> {{ bookingDetails.paymentMethod }}</p>
-      <p><strong>Transaction ID:</strong> {{ bookingDetails.transactionId }}</p>
+<div id="printIf" *ngIf="bookingDetails">
+  <h2>Booking Details</h2>
+  <!-- <h2>{{bookingDetails}}</h2> -->
+  <p><strong>Booking ID:</strong> {{ bookingDetails.id }}</p>
+  <p><strong>Car Model:</strong> {{ bookingDetails.brand }} {{ bookingDetails.model }}</p>
+  <p><strong>Car Reg. Number:</strong>{{ bookingDetails.registrationNumber }}</p>
+  <p><strong>Rental Type:</strong>{{ bookingDetails.rentalType }}</p>
+  <p><strong>Pickup Location:</strong>{{ bookingDetails.pickupLocation }}</p>
+  <p><strong>Start Date:</strong>{{ bookingDetails.startDate | date }}</p>
+  <p><strong>End Date:</strong>{{ bookingDetails.endDate | date }}</p>
+  <p><strong>Driver:</strong> {{ bookingDetails.driverFirstName }} {{ bookingDetails.driverLastName }}</p>
+  <p><strong>Total Cost:</strong> {{ bookingDetails.totalCost | currency }}</p>
+  <p><strong>Initial Payment:</strong> {{ bookingDetails.initialAmount | currency }}</p>
+  <p><strong>Payment Method:</strong> {{ bookingDetails.paymentMethod }}</p>
+  <p><strong>Transaction ID:</strong> {{ bookingDetails.transactionId }}</p>
 
-      <button (click)="generateInvoice()">Generate Invoice</button>
-    </div>
+  <button (click)="generateInvoice()">Generate Invoice</button>
+</div>
   </p-dialog>
 </div>

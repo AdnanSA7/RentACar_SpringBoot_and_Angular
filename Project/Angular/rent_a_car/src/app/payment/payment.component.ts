@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from './payment-service/payment.service';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ import {CurrencyPipe, DatePipe, NgIf} from "@angular/common";
 export class PaymentComponent implements OnInit {
   bookingId!: string;
   cost!: number;
-  bookingDetails: any;
+  bookingDetails: any = {"id":6,"carId":10,"brand":"Toyota","model":"Corolla","registrationNumber":"XYZ1234","rentalType":"Daily","startDate":"2024-12-17T18:00:00.000+00:00","endDate":"2024-12-18T18:00:00.000+00:00","pickupLocation":"Dhaka","dropOffLocation":null,"hours":null,"days":null,"distance":null,"driverId":1,"driverFirstName":"John","driverLastName":"Doe","totalCost":2500.0,"status":"Pending","additionalServiceName":[],"initialAmount":500.0,"paymentMethod":"Nagad","transactionId":"Tdvadjkla22785"};
 
   visible: boolean = false;
 
@@ -26,7 +26,7 @@ export class PaymentComponent implements OnInit {
 
   paymentData: any = {};
 
-  constructor(private route: ActivatedRoute, private router: Router, private paymentService: PaymentService) {  }
+  constructor(private route: ActivatedRoute, private router: Router, private paymentService: PaymentService,private cdRef: ChangeDetectorRef) {  }
 
   ngOnInit(): void {
     // Retrieve the query parameters
@@ -60,9 +60,13 @@ export class PaymentComponent implements OnInit {
     // console.log(this.paymentData);
     this.paymentService.processPayment(this.paymentData).subscribe({
       next: (response) => {
-        this.bookingDetails = response;
+        // this.bookingDetails = response;
+        this.bookingDetails = {"id":response.id,"carId":response.carId,"brand":"Toyota","model":"Corolla","registrationNumber":"XYZ1234","rentalType":"Daily","startDate":"2024-12-17T18:00:00.000+00:00","endDate":"2024-12-18T18:00:00.000+00:00","pickupLocation":"Dhaka","dropOffLocation":null,"hours":null,"days":null,"distance":null,"driverId":1,"driverFirstName":"John","driverLastName":"Doe","totalCost":response.cost,"status":"Pending","additionalServiceName":[],"initialAmount":500.0,"paymentMethod":response.paymentMethod,"transactionId":response.transactionId};
+        this.cdRef.detectChanges(); // Trigger change detection
         alert('Payment submitted successfully!');
         this.showDialog();
+        console.log(this.bookingDetails);
+        console.log(response);
       },
       error: (err) => {
         alert('Payment failed. Please try again.');
@@ -89,9 +93,54 @@ export class PaymentComponent implements OnInit {
   //     }
   //   );
   // }
+
+
   generateInvoice() {
-    // window.open();
-    // Logic for generating invoice (can be a PDF download, for example)
-    window.open('/generate-invoice?bookingId=' + this.bookingDetails.id);
+    const printContents = document.getElementById('printIf')?.innerHTML; // Get the content of the div
+  
+    // Create a new window or an iframe for printing
+    const printWindow = window.open('', '', 'width=800,height=600');
+    printWindow?.document.write(`
+      <html>
+        <head>
+          <title>Booking Details</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 20px;
+            }
+              button{
+              display: none
+              }
+            h2 {
+              color: #4CAF50;
+            }
+            p {
+              font-size: 16px;
+            }
+            .print-button {
+              margin-top: 20px;
+              display: inline-block;
+              padding: 10px;
+              background-color: #4CAF50;
+              color: white;
+              border: none;
+              cursor: pointer;
+            }
+            .print-button:hover {
+              background-color: #45a049;
+            }
+          </style>
+        </head>
+        <body>
+          <h2>Booking Details</h2>
+          ${printContents} <!-- Inject the content for printing -->
+          <button class="print-button" onclick="window.print();window.close();">Print</button>
+        </body>
+      </html>
+    `);
+    printWindow?.document.close();
   }
+  
+
 }
